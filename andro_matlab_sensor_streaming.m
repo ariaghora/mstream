@@ -4,22 +4,29 @@ function main
     isLogging = 1;
     
     clc;
-    input('Press enter to continue');
+    disp('Stream sensor data from matlab for android');
+    input('Press enter to continue...');
+    connector on;
     m = mobiledev;
     m.Logging = isLogging;
+    
  
     while 1
         pause(delay);
         clc;
         [accX, accY, accZ] = getAccelerometer(m);
         [magX, magY, magZ] = getMagneticField(m);
-        disp(['Accelerometer x: ', num2str(accX)]);
-        disp(['Accelerometer y: ', num2str(accY)]);
-        disp(['Accelerometer z: ', num2str(accZ)]);
-        disp('==========================');
-        disp(['Magnetic x: ', num2str(magX)]);
-        disp(['Magnetic y: ', num2str(magY)]);
-        disp(['Magnetic z: ', num2str(magZ)]);
+        latitude = m.Latitude;
+        longitude = m.Longitude;
+        
+        disp(['accel_x: ', num2str(accX)]);
+        disp(['accel_y: ', num2str(accY)]);
+        disp(['accel_z: ', num2str(accZ)]);       
+        disp(['mag_x: ', num2str(magX)]);
+        disp(['mag_y: ', num2str(magY)]);
+        disp(['mag_z: ', num2str(magZ)]);
+        disp(['latitude: ', num2str(latitude)]);
+        disp(['longitude: ', num2str(longitude)]);
     end
 end
 
